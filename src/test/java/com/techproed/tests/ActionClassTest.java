@@ -66,6 +66,35 @@ public class ActionClassTest extends TestBase {
         }
 
         actions.sendKeys(Keys.PAGE_UP).perform();
+        actions.sendKeys(Keys.ARROW_UP).perform();
+    }
+
+    @Test
+    public void buyukKucukYazma(){
+        //MERHABA nasilsiniz
+
+        driver.get("http://google.com");
+
+        //name="q"
+        WebElement aramaKutusu = driver.findElement(By.name("q"));
+
+        //aramaKutusu.sendKeys( Keys.SHIFT + "merhaba nasilsiniz");
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(aramaKutusu).click().keyDown(Keys.SHIFT)
+                .sendKeys("merhaba").keyUp(Keys.SHIFT).sendKeys(" nasilsiniz").perform();
+
+    }
+
+    @Test
+    public void dragAndDrop(){
+        driver.get("http://google.com");
+        WebElement aramaKutusu = driver.findElement(By.name("q"));
+        WebElement logo = driver.findElement(By.id("hplogo"));
+
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(logo, aramaKutusu).perform();
+
     }
 
 
