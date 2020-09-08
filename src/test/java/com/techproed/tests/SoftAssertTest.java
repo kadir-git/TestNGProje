@@ -73,6 +73,7 @@ public class SoftAssertTest {
         signButton.click();
 
         WebElement signOutLinki = driver.findElement(By.partialLinkText("Sign out"));
+
         boolean gorunuyorMu = signOutLinki.isDisplayed();
 
         softAssert.assertAll();
