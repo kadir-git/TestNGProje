@@ -85,13 +85,7 @@ public class WebTablesTest extends TestBase {
 
     }
 
-    public void hucreYazdir(int satir, int sutun){
-        //tbody/tr[satir]/td[sutun]
 
-        String xpathDegerim = "//tbody/tr[" + satir + "]/td[" + sutun + "]";
-        WebElement hucre = driver.findElement(By.xpath(xpathDegerim));
-        System.out.println(hucre.getText());
-    }
 
     @Test
     public void calistir(){
@@ -100,6 +94,16 @@ public class WebTablesTest extends TestBase {
         hucreYazdir(5,2);
         hucreYazdir(2,1);
         hucreYazdir(9,4);
+    }
+
+    public void hucreYazdir(int satir, int sutun){
+        //tbody/tr[satir]/td[sutun]
+
+        giris();
+        String xpathDegerim = "//tbody/tr[" + satir + "]/td[" + sutun + "]";
+
+        WebElement hucre = driver.findElement(By.xpath(xpathDegerim));
+        System.out.println(hucre.getText());
     }
 
 

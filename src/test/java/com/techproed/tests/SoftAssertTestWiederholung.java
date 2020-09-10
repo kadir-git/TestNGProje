@@ -1,8 +1,11 @@
 package com.techproed.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -26,11 +29,50 @@ public class SoftAssertTestWiederholung {
         driver.get("https://www.amazon.com/");
         String baslik = driver.getTitle();
 
-    /*    SoftAssert softAssert = new SoftAssert();
-        softAssert.assertFalse();
-        softAssert.assertTrue();
-        softAssert.assertEquals();
-    */
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertFalse(baslik.contains("Car"));
+        softAssert.assertTrue(baslik.contains("Amazon"));
+        softAssert.assertEquals("Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more", baslik);
+
+        softAssert.assertAll();
     }
 
-}
+    @Test
+    public void test02(){
+        driver.get("http://a.testaddressbook.com/sign_in");
+        SoftAssert softAssert = new SoftAssert();
+
+        WebElement emailKutusu = driver.findElement(By.id("session_email"));
+        emailKutusu.sendKeys("testtechproed@gmail.com");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        softAssert.assertTrue(driver.getTitle().equals("Deneme"));
+
+        WebElement sifreKutusu = driver.findElement(By.id("session_password"));
+        sifreKutusu.sendKeys("Test1234!");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        softAssert.assertTrue(driver.getTitle().equals("Address Book"));
+
+        WebElement signButton = driver.findElement(By.name("commit"));
+        signButton.click();
+
+        WebElement signOutLinki = driver.findElement(By.partialLinkText("Sign out"));
+
+        boolean gorunuyorMu = signOutLinki.isDisplayed();
+
+        softAssert.assertAll();
+    }
+
+    }
