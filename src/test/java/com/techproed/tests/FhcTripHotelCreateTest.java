@@ -28,7 +28,7 @@ public class FhcTripHotelCreateTest extends TestBase {
         fhcTripHotelCreatePage.nameBox.sendKeys("TechProEd");
         fhcTripHotelCreatePage.phoneBox.sendKeys("+155577339944");
 
-        Select select = new Select(fhcTripHotelCreatePage.iDGroupBox);
+        Select select = new Select(fhcTripHotelCreatePage.selectBox);
         select.selectByIndex(2);
 
         fhcTripHotelCreatePage.saveButton.click();

@@ -32,7 +32,7 @@ public class FhcTripHotelCreatePage {
     public WebElement emailBox;
 
     @FindBy (id = "IDGroup")
-    public WebElement iDGroupBox;
+    public WebElement selectBox;
 
     @FindBy (id = "btnSubmit")
     public WebElement saveButton;
