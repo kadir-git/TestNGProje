@@ -14,9 +14,9 @@ public class FileDownloadTest extends TestBase {
     @Test
     public void dosyaVarMi(){
         //bilgisayardaki dosya yolu alinir
-        System.out.println(System.getProperty("user.dir"));
+        System.out.println(System.getProperty("user.dir"));     //C:\Users\kayao\IdeaProjects\TestNGProje
 
-        System.out.println(System.getProperty("user.home"));
+        System.out.println(System.getProperty("user.home"));    //C:\Users\kayao
 
         String kullaniciDosyaYolu = System.getProperty("user.dir");
 
@@ -29,6 +29,7 @@ public class FileDownloadTest extends TestBase {
 
     @Test
     public void dosyaUpload(){ //bilgisayardan web sayfasina dosya yükleme
+
         driver.get("http://the-internet.herokuapp.com/upload");
 
         WebElement chooseFile = driver.findElement(By.id("file-upload"));
@@ -44,6 +45,7 @@ public class FileDownloadTest extends TestBase {
 
     @Test
     public void dosyaDownload(){
+
         driver.get("http://the-internet.herokuapp.com/download");
         //C:\Users\kayao\Downloads\Amsterdam.jpg
         WebElement amsterdamLinki = driver.findElement(By.partialLinkText("Amsterdam.jpg"));

@@ -31,7 +31,7 @@ public class WebTablesTest extends TestBase {
 
         List<WebElement> basliklar = driver.findElements(By.xpath("//thead/tr/th"));
         for (WebElement w: basliklar) {
-            System.out.println(w.getText());
+           System.out.println(w.getText());
         }
     }
 
