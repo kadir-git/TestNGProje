@@ -28,6 +28,7 @@ public class ConfigurationReader {
     }
 
     //properties.getProperty("username"); --> yazilirsa manager2 return edilir
+
     public static String getProperty(String key){
         return properties.getProperty(key);
     }

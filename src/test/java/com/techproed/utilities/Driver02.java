@@ -10,20 +10,35 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class Driver {
+public class Driver02 {
 
-    private Driver(){ }
+    //Eger bir class'tan NESNE ÜRETILMESINI ISTEMIYORSANIZ
+    //constructor'i private yapabilirseniz. (Singleton )
+    private Driver02(){
+    }
 
+    // WebDriver nesnemizi, static olarak oluşturduk, çünkü program başlar başlamaz
+    // hafızada yer almasını istiyoruz.
     static WebDriver driver;
 
+    //Programin herhangi bir yerinden getDriver() methodu cagrilarak
+    //hafizada STATIC olarak olusturulmus DRIVER nesnesine erisebiliriz.
+    //Yani yeniden WebDriver nesnesi olusturmak zorunda degiliz.
+    //Driver.getDriver()
     public static WebDriver getDriver(){
 
-        if(driver == null){
+        //Eger driver nesnesi hafizada bossa olusturulmamissa yenden olusturmana gerek yok
+        //Eger null ise yeniden olusturabilirsin
+        //Sadece ilk cagrildiginda bir tane nesne üret, sonraki cagirmalarda var olan nesnesi kullan.
+        if (driver==null){
+            //Eger Chrome kullanmak istiyorsak
             switch (ConfigurationReader.getProperty("browser")){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
+
+            // Eger firefox kullanmak istiyorsak
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
@@ -41,22 +56,23 @@ public class Driver {
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
                     break;
             }
-
         }
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
         return driver;
     }
 
     public static void closeDriver(){
-
-        if (driver != null){
+        //Eger driver nesnesi null degilse yani hafizada varsa
+        if(driver!=null){
             driver.quit();
             driver = null;
         }
     }
+
+
 
 
 
