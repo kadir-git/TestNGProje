@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public class ReadExcel {
 
@@ -48,24 +49,24 @@ public class ReadExcel {
         int doluSatirSayisi = workbook.getSheetAt(0).getPhysicalNumberOfRows();
         System.out.println("Dolu Satır Sayısı : " + doluSatirSayisi);
 
-        //Tüm ülkeleri yazdir
+        //Tüm ülkeleri yazdir (0.hücredekileri yazdir)
         int sonSatirinIndexi = workbook.getSheetAt(0).getLastRowNum();
         for (int i = 0 ; i<=sonSatirinIndexi ; i++){
-            System.out.print(workbook.getSheetAt(0).getRow(i).getCell(0) + " ");
+            System.out.print("Tüm ülkeler: " + workbook.getSheetAt(0).getRow(i).getCell(0) + " ");
         }
 
         System.out.println();
 
-        //Tüm baskentleri yazdir
-        for (int i=0 ; i<=sonSatirinIndexi ; i++){
-            System.out.print(workbook.getSheetAt(0).getRow(i).getCell(1) + " ");
+        //Tüm baskentleri yazdir (1.hücredekileri yazdir)
+        for (int j=0 ; j<=sonSatirinIndexi ; j++){
+            System.out.print(workbook.getSheetAt(0).getRow(j).getCell(1) + " ");
         }
 
         System.out.println();
 
-        //Bir satirin son sütununun index'ini alma
+        //Bir satirin son sütununun index'ini alma (index 1’dan baslar)
         int sonSutunIndex = workbook.getSheetAt(0).getRow(0).getLastCellNum();
-        System.out.print("Son Sutun Sayisi: " + sonSutunIndex);
+        System.out.print("Son Sutun Index: " + sonSutunIndex);
 
         System.out.println();
 
@@ -73,6 +74,8 @@ public class ReadExcel {
         for (int k = 0 ; k <sonSutunIndex ; k++){
             System.out.println("4.Satir " + k + ".Sütun: " + workbook.getSheetAt(0).getRow(3).getCell(k));
         }
+
+
 
 
 
