@@ -5,9 +5,21 @@ import com.techproed.utilities.ConfigurationReader;
 import com.techproed.utilities.Driver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class GlbSignUpTest {
+
+    @BeforeSuite
+    public void beforeSuite(){
+        System.out.println("BeforeSuite calisti");
+    }
+
+    @BeforeTest
+    public void beforeTest(){
+        System.out.println("BeforeTest calisti");
+    }
 
     @Test
     public void test(){
@@ -33,7 +45,11 @@ public class GlbSignUpTest {
         glbSignUpPage .rePasswordBox.sendKeys(ConfigurationReader.getProperty("glb_sifre"));
         glbSignUpPage .signUp.click();
 
-
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // signUp butonuna tıkladıktan sonra, Success!! yazısını hemen alabilir miyim ?
         System.out.println(glbSignUpPage.basariliYazisi.getText());

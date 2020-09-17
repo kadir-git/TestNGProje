@@ -37,7 +37,7 @@ public class WriteExcel {
         Cell silmekIstedigimizHucre = workbook.getSheetAt(0).getRow(0).getCell(1);
         workbook.getSheetAt(0).getRow(0).removeCell(silmekIstedigimizHucre);
 
-        //1. indexteki satırı silelim (Almanya satırını silelim)
+        //1.indexteki satırı silelim (Almanya satırını silelim)
         Row silmekIstedigimizSatir  = workbook.getSheetAt(0).getRow(1);
         workbook.getSheetAt(0).removeRow(silmekIstedigimizSatir);
 

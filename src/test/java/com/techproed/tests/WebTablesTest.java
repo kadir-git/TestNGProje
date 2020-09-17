@@ -99,7 +99,6 @@ public class WebTablesTest extends TestBase {
     public void hucreYazdir(int satir, int sutun){
         //tbody/tr[satir]/td[sutun]
 
-
         String xpathDegerim = "//tbody/tr[" + satir + "]/td[" + sutun + "]";
 
         WebElement hucre = driver.findElement(By.xpath(xpathDegerim));

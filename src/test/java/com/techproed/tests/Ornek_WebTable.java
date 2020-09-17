@@ -27,13 +27,16 @@ public class Ornek_WebTable extends TestBase {
         giris();
 
         List<WebElement> satir = driver.findElements(By.xpath("//tbody/tr"));
-        System.out.println("Satir Sayisi: " + satir.size());
+        System.out.println("Tabloda " + satir.size() + " tane satir vardir.");
 
         List<WebElement> ucuncuSatir = driver.findElements(By.xpath("//tbody/tr[3]"));
         for (WebElement w : ucuncuSatir) {
             System.out.println("Ucuncu satir verileri: " + w.getText());
-
         }
+
+        WebElement ucuncuSatir02 = driver.findElement(By.xpath("//tbody/tr[3]"));
+        System.out.println("Ucuncu satir verileri: " + ucuncuSatir02.getText());
+
 
 
     }
