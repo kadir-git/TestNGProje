@@ -11,6 +11,7 @@ public class FhcTripLoginTest extends TestBase {
         driver.get("http://fhctrip-qa.com/Account/LogOn?ReturnUrl=%2FAdmin%2FUserAdmin");
 
         FhcTripLoginPage fhcTripLoginPage = new FhcTripLoginPage(driver);
+
         fhcTripLoginPage.userNameBox.sendKeys("manager2");
         fhcTripLoginPage.passwordBox.sendKeys("Man1ager2!");
         fhcTripLoginPage.logInButton.click();

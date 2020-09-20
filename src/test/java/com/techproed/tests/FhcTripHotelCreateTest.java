@@ -23,10 +23,10 @@ public class FhcTripHotelCreateTest extends TestBase {
         FhcTripHotelCreatePage fhcTripHotelCreatePage = new FhcTripHotelCreatePage(driver);
 
         fhcTripHotelCreatePage.codeBox.sendKeys("1234");
-        fhcTripHotelCreatePage.addressBox.sendKeys("Florida");
-        fhcTripHotelCreatePage.emailBox.sendKeys("techproed@techproed.com");
         fhcTripHotelCreatePage.nameBox.sendKeys("TechProEd");
+        fhcTripHotelCreatePage.addressBox.sendKeys("Florida");
         fhcTripHotelCreatePage.phoneBox.sendKeys("+155577339944");
+        fhcTripHotelCreatePage.emailBox.sendKeys("techproed@techproed.com");
 
         Select select = new Select(fhcTripHotelCreatePage.selectBox);
         select.selectByIndex(2);
