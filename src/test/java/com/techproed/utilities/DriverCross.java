@@ -9,38 +9,34 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
 import java.util.concurrent.TimeUnit;
 
-public class Driver02 {
-
-    //Eger bir class'tan NESNE ÜRETILMESINI ISTEMIYORSANIZ
-    //constructor'i private yapabilirseniz. (Singleton )
-    private Driver02(){
-    }
-
+public class DriverCross {
+    // Eğer bir class'tan NESNE ÜRETİLMESİNİ İSTEMİYORSANIZ
+    // constructor'ı private yapabilirsiniz (Singleton Class)
+    private DriverCross(){ }
     // WebDriver nesnemizi, static olarak oluşturduk, çünkü program başlar başlamaz
     // hafızada yer almasını istiyoruz.
     static WebDriver driver;
-
-    //Programin herhangi bir yerinden getDriver() methodu cagrilarak
-    //hafizada STATIC olarak olusturulmus DRIVER nesnesine erisebiliriz.
-    //Yani yeniden WebDriver nesnesi olusturmak zorunda degiliz.
+    // Programın herhangi bir yerinden getDriver() methodu çağırılarak
+    // hafıza STATIC olarak oluşturulmuş DRIVER nesnesine erişebiliriz.
+    // Yani yeniden WebDriver nesnesi oluşturmak zorunda değiliz.
     //Driver.getDriver()
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver(String browser){
+        // Eğer driver nesnesi hafızada boşsa, oluşturulmamışsa yeniden oluşturmana gerek yok.
+        // Eğer null ise, yeniden oluşturabilirsin.
+        // Sadece ilk çağırıldığında bir tane nesne üret, sonraki çağırmalarda var olan nesnesi kullan.
 
-        //Eger driver nesnesi hafizada bossa olusturulmamissa yenden olusturmana gerek yok
-        //Eger null ise yeniden olusturabilirsin
-        //Sadece ilk cagrildiginda bir tane nesne üret, sonraki cagirmalarda var olan nesnesi kullan.
-        if (driver==null){
-            //Eger Chrome kullanmak istiyorsak
-            switch (ConfigurationReader.getProperty("browser")){
+        // Eğer browser olarak gelen parametrenin değeri "null" ise, yani boş bir değer geldiyse
+        // o zaman güvenlik önlemi olarak, .properties dosyasından browser değerini al ve kullan
+        // eğer browser'in değeri null değilse hangisi geldiyse onu kullanabilirsiniz.
+        browser = browser == null ? ConfigurationReader.getProperty("browser") : browser ;
+        if(driver == null){
+            switch (browser){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
-
-            // Eger firefox kullanmak istiyorsak
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
@@ -53,13 +49,13 @@ public class Driver02 {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
-                case "safari":
-                    WebDriverManager.getInstance(SafariDriver.class).setup();
-                    driver = new SafariDriver();
-                    break;
                 case "opera":
                     WebDriverManager.operadriver().setup();
                     driver = new OperaDriver();
+                    break;
+                case "safari":
+                    WebDriverManager.getInstance(SafariDriver.class).setup();
+                    driver = new SafariDriver();
                     break;
                 case "headless-chrome":
                     WebDriverManager.chromedriver().setup();
@@ -67,23 +63,15 @@ public class Driver02 {
                     break;
             }
         }
-
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
     }
-
     public static void closeDriver(){
-        //Eger driver nesnesi null degilse yani hafizada varsa
-        if(driver!=null){
+
+        if (driver != null){
             driver.quit();
             driver = null;
         }
     }
-
-
-
-
-
 }

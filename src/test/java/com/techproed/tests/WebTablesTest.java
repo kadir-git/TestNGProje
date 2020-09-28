@@ -4,12 +4,15 @@ import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class WebTablesTest extends TestBase {
 
+    @BeforeMethod
     public void giris(){
         driver.get("http://fhctrip-qa.com/admin/HotelRoomAdmin");
         driver.findElement(By.id("UserName")).sendKeys("manager2");
@@ -18,7 +21,6 @@ public class WebTablesTest extends TestBase {
 
     @Test
     public void table(){
-        giris();
 
         try {
             Thread.sleep(3000);
@@ -37,7 +39,6 @@ public class WebTablesTest extends TestBase {
 
     @Test
     public void tumSatirlar(){
-        giris();
 
         try {
             Thread.sleep(3000);
@@ -53,7 +54,6 @@ public class WebTablesTest extends TestBase {
 
     @Test
     public void tumHucreler(){
-        giris();
 
         try {
             Thread.sleep(3000);
@@ -70,7 +70,6 @@ public class WebTablesTest extends TestBase {
 
     @Test
     public void belirliBirSutunYazdirma() {
-        giris();
 
         try {
             Thread.sleep(3000);
@@ -89,7 +88,6 @@ public class WebTablesTest extends TestBase {
 
     @Test
     public void calistir(){
-        giris();
         hucreYazdir(3,5);
         hucreYazdir(5,2);
         hucreYazdir(2,1);
@@ -103,6 +101,11 @@ public class WebTablesTest extends TestBase {
 
         WebElement hucre = driver.findElement(By.xpath(xpathDegerim));
         System.out.println(hucre.getText());
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.close();
     }
 
 
